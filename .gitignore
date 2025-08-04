@@ -14,3 +14,5 @@ out/
 logs/
 .mypy_cache/
 .pytest_cache/
+
+.coverage

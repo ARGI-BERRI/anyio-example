@@ -25,8 +25,9 @@ async def main() -> None:
     logger.success("File operations completed.")
 
 
-async def initialize_dirs() -> Path:
-    pwd = await Path.cwd()
+async def initialize_dirs(pwd: Path | None = None) -> Path:
+    if pwd is None:
+        pwd = await Path.cwd()
 
     dest_dir = pwd / "out"
     await dest_dir.mkdir(exist_ok=True)
