@@ -1,3 +1,5 @@
+"""File operations module for AnyIO test project."""
+
 import secrets
 
 import uvloop
@@ -6,6 +8,7 @@ from loguru import logger
 
 
 async def main() -> None:
+    """Main entry point for file operations."""
     dest_dir = await initialize_dirs()
 
     logger.info("Starting file operations...")
@@ -26,6 +29,14 @@ async def main() -> None:
 
 
 async def initialize_dirs(pwd: Path | None = None) -> Path:
+    """Initialize the directory structure.
+
+    Args:
+        pwd (Path | None, optional): The parent directory path. Defaults to None.
+
+    Returns:
+        Path: The path to the destination directory.
+    """
     if pwd is None:
         pwd = await Path.cwd()
 
@@ -39,6 +50,14 @@ async def initialize_dirs(pwd: Path | None = None) -> Path:
 
 
 async def write_file(dest_path: Path) -> None:
+    """Write a file with a simulated error.
+
+    Args:
+        dest_path (Path): The path to the destination file.
+
+    Raises:
+        ValueError: If a simulated error occurs during file writing.
+    """
     await dest_path.write_text("Hello, World!")
 
     if secrets.randbelow(10) < 5:
@@ -46,6 +65,11 @@ async def write_file(dest_path: Path) -> None:
 
 
 async def flush_dir(dir_path: Path) -> None:
+    """Flush the contents of a directory.
+
+    Args:
+        dir_path (Path): The path to the directory to flush.
+    """
     async for item in dir_path.iterdir():
         await item.unlink()
 
