@@ -20,6 +20,7 @@ packages = ["app"]
 
 [dependency-groups]
 dev = [
+    "pdoc>=15.0.4",
     "pyright>=1.1.403",
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1",
